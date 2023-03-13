@@ -1,7 +1,7 @@
 {
-  "name": "sergey-netlify",
+  "name": "Cedemi",
   "version": "1.0.0",
-  "description": "A Sergey example project, ready for Netlify",
+  "description": "Cedemi was done with sergey, hosted in netlify",
   "private": true,
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "sergey": "0.0.13"
+    "gulp-minify": "^3.0.0",
+    "sergey": "^0.0.4"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
   }
 }
