@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "gulp-minify": "^3.0.0",
+    "node-mailjet": "^6.0.2",
     "sergey": "^0.0.4"
   },
   "devDependencies": {
