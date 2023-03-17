@@ -12,7 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "gulp-minify": "^3.0.0",
+    "node-env-file": "^0.1.8",
     "node-mailjet": "^6.0.2",
     "sergey": "^0.0.4"
   },
