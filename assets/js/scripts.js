@@ -58,11 +58,13 @@ window.addEventListener('DOMContentLoaded', event => {
     const email        = document.getElementById("email");
     const phone        = document.getElementById("phone");
     const message      = document.getElementById("message");
-    const emailRegex   = new RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "gm");
+    const emailRegex   = new RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "m");
     let error          = true;
     let errorMesage    = "Une erreur est survenue.";
 
     form.addEventListener("submit", (event) => {
+
+        const isValidEmail = emailRegex.test(email.value);
 
         if (name.value.length < 3 || name.value.length > 150) {
             console.log("Le champ nom doit avoir entre 3 et 150 caractères.");
@@ -76,10 +78,9 @@ window.addEventListener('DOMContentLoaded', event => {
             document.getElementById("nameError").style.cssText = "display : none; visibility : hidden;";
         }
 
-        const isValidEmail = emailRegex.test(email.value);
-        if(!isValidEmail || email.validity.typeMismatch || email.validity.patternMismatch || '' === email.value.trim()) {
+        if(!isValidEmail || email.validity.typeMismatch || '' === email.value.trim()) { // || email.validity.patternMismatch
             event.preventDefault();
-            console.log("email NOK : " + email.value);
+            console.log("email NOK : " + email.value + ", valide=" + isValidEmail);
             errorMesage = "Le champ email semble invalide, veuillez entrer une adresse mail valide.";
             error = true;
             document.getElementById("emailError").style.cssText = "display : block; visibility : visible;";

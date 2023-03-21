@@ -3,3 +3,6 @@ public/
 node_modules/
 package-lock.json
 gulpfile.js
+
+# Local Netlify folder
+.netlify
