@@ -1,15 +1,39 @@
 <!DOCTYPE html>
 <html lang="fr-FR">
 <sergey-import src="head" />
+<header role="banner">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top wrapper" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="https://www.cedemi.fr/#page-top"><img src="assets/img/logos/navbar-logo.svg" alt="Cedemi Logo" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars ms-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="https://www.cedemi.fr/#services">Présentation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.cedemi.fr/#portfolio">Activité</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.cedemi.fr/#about">Historique</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.cedemi.fr/#consulting">Conseil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.cedemi.fr/#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
 <body id="page-top">
-<sergey-import src="header" />
-<section>
-    <h1>page introuvable</h1>
-    <p>
-        La page que vous tentez d'accéder n'existe pas...
-        <a href="https://www.cedemi.fr/" title="Retourner à l'accueil">Retourner à l'accueil</a>
-    </p>
-</section>
+<header class="broken">
+    <div class="container">
+        <div class="masthead-subheading"><h1>page introuvable</h1></div>
+        <div class="masthead-heading text-uppercase">
+            <p>
+                La page que vous tentez d'afficher n'existe pas...
+            </p>
+        </div>
+        <a class="btn btn-primary btn-xl text-uppercase" href="https://www.cedemi.fr/" title="Retourner à l'accueil">Retourner à l'accueil</a>
+    </div>
+</header>
+<sergey-import src="modals" />
 <sergey-import src="footer" />
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

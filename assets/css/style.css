@@ -11416,6 +11416,17 @@ header.masthead {
   background-position: center center;
   background-size: cover;
 }
+header.broken {
+  padding-top: 10.5rem;
+  padding-bottom: 6rem;
+  text-align: center;
+  color: #fff;
+  background-image: url("../img/header-error-404.png");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+}
 header.masthead .masthead-subheading {
   font-size: 1.5rem;
   font-style: italic;
@@ -11784,4 +11795,8 @@ section#contact form#contactForm :-ms-input-placeholder {
 #nameError, #emailError, #phoneError, #messageError {
   color: red;
   visibility: hidden;
+}
+
+.mention {
+  text-decoration: underline;
 }
