@@ -18,9 +18,10 @@
     "node-env-file": "^0.1.8",
     "node-fetch": "^3.3.1",
     "node-mailjet": "^6.0.2",
+    "npm": "^9.7.1",
     "sergey": "^0.0.4"
   },
   "devDependencies": {
-    "gulp": "^4.0.2"
+    "gulp": "^3.9.1"
   }
 }
