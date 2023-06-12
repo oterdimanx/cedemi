@@ -138,7 +138,15 @@ window.addEventListener('DOMContentLoaded', event => {
             fetch(functionLocation, {
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({'email':email.value})
+                body: JSON.stringify(
+                    {
+                        'name':name.value,
+                        'reason':reason.value,
+                        'phone':phone.value,
+                        'email':email.value,
+                        'message':message.value
+                    }
+                )
             })
                 .then(res => {
                 console.log("Request complete! response:", res);
