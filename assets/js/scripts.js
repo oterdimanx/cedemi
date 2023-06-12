@@ -133,7 +133,8 @@ window.addEventListener('DOMContentLoaded', event => {
 
         if( !error && 0 === arrayMsgs.length) {
 
-/*
+
+
             fetch(functionLocation, {
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},
@@ -146,7 +147,7 @@ window.addEventListener('DOMContentLoaded', event => {
                     console.log('Success: ', data);
 
                 });
-*/
+
             //console.log(functionLocation + ' => cece');
 
             console.log('NO ERRORS???');
