@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "sergey",
+    "start:lambda": "netlify-lambda serve src/functions",
     "dev": "sergey --watch"
   },
   "keywords": [],
@@ -22,6 +23,7 @@
     "sergey": "^0.0.4"
   },
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "netlify-cli": "^15.4.1"
   }
 }

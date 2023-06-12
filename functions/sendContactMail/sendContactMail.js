@@ -5,11 +5,13 @@ const mjsec = process.env.MJ_SECRET
 
 const handler = async (event) => {
   try {
-    const subject = event.queryStringParameters.name || 'World'
+    const params = JSON.parse(event.body);
+    const name = params.name || 'badNameFormat';
+    const email = params.email || 'badEmailFormat';
     //const response = await fetch();
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: `Hello sd ${mjsec}` }),
+      body: JSON.stringify({ message: `Hello sd ${email}` }),
       // // more keys you can return:
       // headers: { "headerName": "headerValue", ... },
       // isBase64Encoded: true,
