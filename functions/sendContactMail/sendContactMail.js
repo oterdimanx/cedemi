@@ -17,10 +17,11 @@ const handler = async (event) => {
         const phone = params.phone || 'badPhoneFormat'
         const message = params.message || 'badMessageFormat'
         const sgMail = require('@sendgrid/mail')
+        const apiKey = 'localhost' === location.hostname ? process.env.SENDGRID_API_KEY : process.env.NETLIFY_EMAILS_PROVIDER_API_KEY;
 
-        console.log(process.env.SENDGRID_API_KEY)
+        console.log(apiKey)
 
-        sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+        sgMail.setApiKey(apiKey)
         const msg = {
             to: 'inquiry@cedemi.fr', // Change to your recipient
             from: 'inquiry@cedemi.fr', // Change to your verified sender
