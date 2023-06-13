@@ -23,6 +23,14 @@ const handler = async (event) => {
         console.log(process.env.NETLIFY_EMAILS_PROVIDER_API_KEY + '/')
         console.log(apiKey)
 
+        return {
+            statusCode: 200,
+            body: JSON.stringify({message: `ok`}),
+            // // more keys you can return:
+            // headers: { "headerName": "headerValue", ... },
+            // isBase64Encoded: true,
+        }
+
 /*
         sgMail.setApiKey(apiKey)
         const msg = {

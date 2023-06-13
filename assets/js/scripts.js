@@ -130,8 +130,7 @@ window.addEventListener('DOMContentLoaded', event => {
             document.getElementById('messageError').style.cssText = 'display : none; visibility : hidden;';
         }
 
-        console.log(process.env.CONTEXT + '/')
-        console.log(process.env.NETLIFY_EMAILS_PROVIDER_API_KEY + '/')
+
         console.log(functionLocation)
 
         if( !error && 0 === arrayMsgs.length) {
