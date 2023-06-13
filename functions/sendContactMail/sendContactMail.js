@@ -18,6 +18,8 @@ const handler = async (event) => {
         const message = params.message || 'badMessageFormat'
         const sgMail = require('@sendgrid/mail')
 
+        console.log(process.env.SENDGRID_API_KEY)
+
         sgMail.setApiKey(process.env.SENDGRID_API_KEY)
         const msg = {
             to: 'inquiry@cedemi.fr', // Change to your recipient
@@ -47,7 +49,7 @@ const handler = async (event) => {
             })
         return {
             statusCode: 200,
-            body: JSON.stringify({message: `Message envoyé`}),
+            body: JSON.stringify({message: `ok`}),
             // // more keys you can return:
             // headers: { "headerName": "headerValue", ... },
             // isBase64Encoded: true,

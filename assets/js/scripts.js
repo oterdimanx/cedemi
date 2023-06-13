@@ -20,7 +20,6 @@ window.addEventListener('DOMContentLoaded', event => {
         } else {
             navbarCollapsible.classList.add('navbar-shrink')
         }
-
     };
 
     // Shrink the navbar
@@ -51,7 +50,7 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
-
+    // contact form submission
     const submitButton = document.getElementById('submitButton');
     const form     = document.querySelector('form');
     const reason       = document.getElementById('reason');
@@ -59,10 +58,10 @@ window.addEventListener('DOMContentLoaded', event => {
     const email        = document.getElementById('email');
     const phone        = document.getElementById('phone');
     const message      = document.getElementById('message');
-    const emailRegex   = new RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'm');
-    let arrayMsgs = [];
-    let error          = true;
-    let functionLocation = 'localhost' === location.hostname ? 'http://localhost:8888/.netlify/functions/sendContactMail' : '/.netlify/functions/sendContactMail';
+    const emailRegex        = new RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'm');
+    let arrayMsgs             = [];
+    let error               = true;
+    let functionLocation      = 'localhost' === location.hostname ? 'http://localhost:8888/.netlify/functions/sendContactMail' : '/.netlify/functions/sendContactMail';
 
     form.addEventListener('submit', (event) => {
 
@@ -132,9 +131,6 @@ window.addEventListener('DOMContentLoaded', event => {
         }
 
         if( !error && 0 === arrayMsgs.length) {
-
-
-
             fetch(functionLocation, {
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},
@@ -148,24 +144,22 @@ window.addEventListener('DOMContentLoaded', event => {
                     }
                 )
             })
-                .then(res => {
+            .then(res => {
                 console.log("Request complete! response:", res);
-                })
-                .then(data => {
-                    console.log('Success: ', data);
-
-                });
-
-            //console.log(functionLocation + ' => cece');
-
-            console.log('NO ERRORS???');
-
+                if('OK' === res.statusText){
+                    document.getElementById('form-wrapper').className = 'd-none';
+                    submitButton.style.cssText = 'display : none; visibility : hidden;';
+                    document.getElementById('submitSuccessMessage').className = 'form-success';
+                }
+            })
+            .then(data => {
+                console.log('Success: ', data);
+            });
         } else {
             console.log('ERRORS');
         }
 
         arrayMsgs = [];
-
         console.log('prevent form validation');
         event.preventDefault();
     });

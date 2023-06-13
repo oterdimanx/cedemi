@@ -275,7 +275,7 @@
         </div>
 
         <form id="contactForm">
-          <div class="row align-items-stretch mb-5">
+          <div id="form-wrapper" class="row align-items-stretch mb-5">
             <div class="col-md-6">
               <div class="form-group">
                 <!-- Name input-->
@@ -308,21 +308,19 @@
             </div>
           </div>
           <!-- Submit success message-->
-          <!---->
-          <!-- This is what your users will see when the form-->
-          <!-- has successfully submitted-->
           <div class="d-none" id="submitSuccessMessage">
             <div class="text-center text-white mb-3">
-              <div class="fw-bolder">Le formulaire a bien été envoyé !</div>
-              Merci d'avoir pris la peine de nous contacter.
-              <br />
-              <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+              <div class="fw-bolder">
+                <h3>Votre message a bien été envoyé !</h3>
+                <p>
+                  <a href="#page-top">Merci d'avoir pris la peine de nous contacter.</a><br />
+                  Si nécessaire, nous vous recontacterons dans les plus brefs délais.
+                </p>
+              </div>
             </div>
           </div>
           <!-- Submit error message-->
           <!---->
-          <!-- This is what your users will see when there is-->
-          <!-- an error submitting the form-->
           <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Une erreur est survenue !</div></div>
           <!-- Submit Button-->
           <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Envoyer</button></div>
