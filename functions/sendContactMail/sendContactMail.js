@@ -22,6 +22,7 @@ const handler = async (event) => {
         console.log(process.env.CONTEXT + '/')
         console.log(process.env.NETLIFY_EMAILS_PROVIDER_API_KEY + '/')
         console.log(apiKey)
+
 /*
         sgMail.setApiKey(apiKey)
         const msg = {
