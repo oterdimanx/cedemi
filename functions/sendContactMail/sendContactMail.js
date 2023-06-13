@@ -19,8 +19,6 @@ const handler = async (event) => {
         const sgMail = require('@sendgrid/mail')
         const apiKey = process.env.NETLIFY_EMAILS_PROVIDER_API_KEY;
 
-        console.log(apiKey)
-
         sgMail.setApiKey(apiKey)
         const msg = {
             to: 'inquiry@cedemi.fr', // Change to your recipient

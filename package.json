@@ -15,6 +15,7 @@
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",
     "dotenv": "^16.0.3",
+    "gulp-cli": "^2.3.0",
     "gulp-minify": "^3.0.0",
     "netlify-lambda": "^2.0.16",
     "node-env-file": "^0.1.8",
@@ -23,7 +24,7 @@
     "sergey": "^0.0.4"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "netlify-cli": "^15.4.1"
   }
 }
