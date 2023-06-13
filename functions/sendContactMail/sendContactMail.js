@@ -40,7 +40,7 @@ const handler = async (event) => {
                 '</body>' +
                 '</html>',
         }
-        sgMail
+        await sgMail
             .send(msg)
             .then(() => {
                 console.log('Email sent')

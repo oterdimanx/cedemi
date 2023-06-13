@@ -130,9 +130,6 @@ window.addEventListener('DOMContentLoaded', event => {
             document.getElementById('messageError').style.cssText = 'display : none; visibility : hidden;';
         }
 
-
-        console.log(functionLocation)
-
         if( !error && 0 === arrayMsgs.length) {
             fetch(functionLocation, {
                 method: "POST",
