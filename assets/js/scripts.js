@@ -61,7 +61,7 @@ window.addEventListener('DOMContentLoaded', event => {
     const emailRegex        = new RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'm');
     let arrayMsgs             = [];
     let error               = true;
-    let functionLocation      = 'localhost' === location.hostname ? 'http://localhost:8888/.netlify/functions/sendContactMail' : '/.netlify/functions/sendContactMail';
+    let functionLocation      = 'localhost' === location.hostname ? 'http://localhost:8888/.netlify/functions/sendContactMail' : 'https://cedemi.netlify.app/.netlify/functions/sendContactMail';
 
     form.addEventListener('submit', (event) => {
 

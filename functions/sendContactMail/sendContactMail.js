@@ -17,21 +17,10 @@ const handler = async (event) => {
         const phone = params.phone || 'badPhoneFormat'
         const message = params.message || 'badMessageFormat'
         const sgMail = require('@sendgrid/mail')
-        const apiKey = 'production' === process.env.CONTEXT ? process.env.NETLIFY_EMAILS_PROVIDER_API_KEY : process.env.SENDGRID_API_KEY;
+        const apiKey = process.env.NETLIFY_EMAILS_PROVIDER_API_KEY;
 
-        console.log(process.env.CONTEXT + '/')
-        console.log(process.env.NETLIFY_EMAILS_PROVIDER_API_KEY + '/')
         console.log(apiKey)
 
-        return {
-            statusCode: 200,
-            body: JSON.stringify({message: `ok`}),
-            // // more keys you can return:
-            // headers: { "headerName": "headerValue", ... },
-            // isBase64Encoded: true,
-        }
-
-/*
         sgMail.setApiKey(apiKey)
         const msg = {
             to: 'inquiry@cedemi.fr', // Change to your recipient
@@ -66,8 +55,6 @@ const handler = async (event) => {
             // headers: { "headerName": "headerValue", ... },
             // isBase64Encoded: true,
         }
-
- */
     } catch (error) {
         return { statusCode: 500, body: error.toString() }
     }
