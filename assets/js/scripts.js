@@ -10,7 +10,7 @@
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
-    var navbarShrink = function () {
+    const navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');
         if (!navbarCollapsible) {
             return;
@@ -35,7 +35,7 @@ window.addEventListener('DOMContentLoaded', event => {
             target: '#mainNav',
             offset: 74,
         });
-    };
+    }
 
     // Collapse responsive navbar when toggler is visible
     const navbarToggler = document.body.querySelector('.navbar-toggler');
@@ -51,6 +51,7 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
     // contact form submission
+    const lang                = document.URL.includes('fr_en') ? 'en' : 'fr';
     const submitButton = document.getElementById('submitButton');
     const form     = document.querySelector('form');
     const reason       = document.getElementById('reason');
@@ -62,56 +63,56 @@ window.addEventListener('DOMContentLoaded', event => {
     let arrayMsgs             = [];
     let error               = true;
     let functionLocation      = 'localhost' === location.hostname ? 'http://localhost:8888/.netlify/functions/sendContactMail' : 'https://cedemi.netlify.app/.netlify/functions/sendContactMail';
+    let msg                   = '';
 
     form.addEventListener('submit', (event) => {
 
         const isValidEmail = emailRegex.test(email.value);
 
         if (name.value.length < 3 || name.value.length > 150) {
-            //console.log('Le champ nom doit avoir entre 3 et 150 caractères.');
-            arrayMsgs.push('Le champ nom doit avoir entre 3 et 150 caractères.');
+            msg = 'fr' === lang ? 'Le champ nom doit avoir entre 3 et 150 caractères.' : 'the name field must contain between 3 and 150 characters.';
+            arrayMsgs.push(msg);
             error = true;
             event.preventDefault();
             document.getElementById('nameError').style.cssText = 'display : block; visibility : visible;';
+            msg = '';
         } else {
-            //console.log("name OK");
             error = false;
             document.getElementById('nameError').style.cssText = 'display : none; visibility : hidden;';
         }
 
         if (reason.value.length < 3 || reason.value.length > 150) {
-            //console.log('Le champ raison sociale doit avoir entre 3 et 150 caractères.');
-            arrayMsgs.push('Le champ raison sociale doit avoir entre 3 et 150 caractères.');
+            msg = 'fr' === lang ? 'Le champ raison sociale doit avoir entre 3 et 150 caractères.' : 'the Company Name field must contain between 3 and 150 characters.';
+            arrayMsgs.push(msg);
             error = true;
             event.preventDefault();
             document.getElementById('reasonError').style.cssText = 'display : block; visibility : visible;';
+            msg = '';
         } else {
-            //console.log("reason OK");
             error = false;
             document.getElementById('reasonError').style.cssText = 'display : none; visibility : hidden;';
         }
 
         if(!isValidEmail || email.validity.typeMismatch || '' === email.value.trim()) { // || email.validity.patternMismatch
-            event.preventDefault();
-            //console.log('email NOK : ' + email.value + ', valide=' + isValidEmail);
-            arrayMsgs.push('Le champ email semble invalide, veuillez entrer une adresse mail valide.');
+            msg = 'fr' === lang ? 'Le champ email semble invalide, veuillez entrer une adresse mail valide.' : 'the Email field doesn\'t appear to be valid. Please provide a valid email address.';
+            arrayMsgs.push(msg);
             error = true;
+            event.preventDefault();
             document.getElementById('emailError').style.cssText = 'display : block; visibility : visible;';
+            msg = '';
         } else {
-            //console.log('email OK');
             error = false;
             document.getElementById('emailError').style.cssText = 'display : none; visibility : hidden;';
         }
 
         if (phone.validity.typeMismatch || phone.validity.patternMismatch || '' === phone.value.trim()) {
             event.preventDefault();
-            //console.log('phone NOK');
-            arrayMsgs.push('Le format du champ téléphone est incorrect.');
+            msg = 'fr' === lang ? 'Le format du champ téléphone est incorrect.' : 'The Phone field is not valid.';
+            arrayMsgs.push(msg);
             error = true;
             document.getElementById('phoneError').style.cssText = 'display : block; visibility : visible;';
+            msg = '';
         } else {
-            //console.log(phone.value + ' = phone');
-            //console.log('phone OK');
             phone.setCustomValidity('');
             error = false;
             document.getElementById('phoneError').style.cssText = 'display : none; visibility : hidden;';
@@ -119,10 +120,11 @@ window.addEventListener('DOMContentLoaded', event => {
 
         if (message.validity.typeMismatch || message.validity.patternMismatch || '' === message.value.trim() || message.value.length < 15 || message.value.length > 850) {
             event.preventDefault();
-            //console.log('message NOK');
-            arrayMsgs.push('Le champ message doit comporter au minimum 15 caractères (max 850).');
+            msg = 'fr' === lang ? 'Le champ message doit comporter au minimum 15 caractères (max 850).' : 'The Message field must contain at least 15 characters (850 max).';
+            arrayMsgs.push(msg);
             error = true;
             document.getElementById('messageError').style.cssText = 'display : block; visibility : visible;';
+            msg = '';
         } else {
             //console.log('message OK');
             message.setCustomValidity('');
@@ -160,8 +162,6 @@ window.addEventListener('DOMContentLoaded', event => {
         }
 
         arrayMsgs = [];
-        //console.log('prevent form validation');
         event.preventDefault();
     });
-
 });

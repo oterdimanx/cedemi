@@ -7,4 +7,3 @@ gulpfile.js
 # Local Netlify folder
 .netlify
 sendgrid.env
-sendgrid.env

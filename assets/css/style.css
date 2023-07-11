@@ -4068,6 +4068,9 @@ textarea.form-control-lg {
   padding-right: 0;
   padding-left: 0;
 }
+.navbar-nav .nav-link img {
+  margin-top: -4px;
+}
 .navbar-nav .dropdown-menu {
   position: static;
 }
