@@ -3,7 +3,7 @@
   publish = "public"
   Functions = "functions"
 [build.processing]
-  skip_processing = false
+  skip_processing = true
 [build.processing.js]
   bundle = true
   minify = true
