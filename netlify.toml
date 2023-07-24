@@ -9,3 +9,7 @@
   minify = true
 [[plugins]]
   package = "@netlify/plugin-emails"
+[[headers]]
+for = "/*"
+  [headers.values]
+  Access-Control-Allow-Origin = "*"
