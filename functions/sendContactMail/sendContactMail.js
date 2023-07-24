@@ -6,6 +6,11 @@ const handler = async (event) => {
         if (event.body === null) {
             return {
                 statusCode: 400,
+                headers: {
+                    'Access-Control-Allow-Headers': 'Content-Type',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'OPTIONS,POST'
+                },
                 body: JSON.stringify("Payload required"),
             };
         }
@@ -49,7 +54,9 @@ const handler = async (event) => {
         return {
             statusCode: 200,
             headers: {
-            'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST'
             },
             body: JSON.stringify({message: `ok`}),
             // // more keys you can return:
@@ -57,7 +64,15 @@ const handler = async (event) => {
             // isBase64Encoded: true,
         }
     } catch (error) {
-        return { statusCode: 500, body: error.toString() }
+        return {
+        statusCode: 500,
+        headers: {
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'OPTIONS,POST'
+        },
+        body: error.toString()
+        }
     }
 };
 
