@@ -13,3 +13,8 @@
 for = "/*"
   [headers.values]
   Access-Control-Allow-Origin = "*"
+[[redirects]]
+  from = "https://cedemi.netlify.app"
+  to = "https://www.cedemi.fr"
+  status = 301
+  force = true
