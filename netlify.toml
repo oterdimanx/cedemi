@@ -18,3 +18,8 @@ for = "/*"
   to = "https://www.cedemi.fr"
   status = 301
   force = true
+[[redirects]]
+  from = "https://cedemi.netlify.app/fr_en"
+  to = "https://www.cedemi.fr/fr_en"
+  status = 301
+  force = true
