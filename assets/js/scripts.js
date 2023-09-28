@@ -51,19 +51,19 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
     // contact form submission
-    const lang                = document.URL.includes('fr_en') ? 'en' : 'fr';
+    const lang         = document.URL.includes('fr_en') ? 'en' : 'fr';
     const submitButton = document.getElementById('submitButton');
-    const form     = document.querySelector('form');
-    const reason       = document.getElementById('reason');
-    const name         = document.getElementById('yourname');
+    const form         = document.querySelector('form');
+    const reason       = document.getElementById('reason').replace(/(<([^>]+)>)/gi, "");
+    const name         = document.getElementById('yourname').replace(/(<([^>]+)>)/gi, "");
     const email        = document.getElementById('email');
     const phone        = document.getElementById('phone');
-    const message      = document.getElementById('message');
-    const emailRegex        = new RegExp(/^\b[a-zA-Z0-9._%+-]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'm');
-    let arrayMsgs             = [];
-    let error               = true;
-    let functionLocation      = 'localhost' === location.hostname ? 'http://localhost:8888/.netlify/functions/sendContactMail' : 'https://cedemi.netlify.app/.netlify/functions/sendContactMail';
-    let msg                   = '';
+    const message      = document.getElementById('message').replace(/(<([^>]+)>)/gi, "");
+    const emailRegex   = new RegExp(/^\b[a-zA-Z0-9._%+-]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'm');
+    let arrayMsgs      = [];
+    let error          = true;
+    let functionLocation = 'localhost' === location.hostname ? 'http://localhost:8888/.netlify/functions/sendContactMail' : '/.netlify/functions/sendContactMail';
+    let msg            = '';
 
     form.addEventListener('submit', (event) => {
 
@@ -135,7 +135,11 @@ window.addEventListener('DOMContentLoaded', event => {
         if( !error && 0 === arrayMsgs.length) {
             fetch(functionLocation, {
                 method: "POST",
-                headers: {'Content-Type': 'application/json'},
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Credentials': true
+                },
                 body: JSON.stringify(
                     {
                         'name':name.value,
