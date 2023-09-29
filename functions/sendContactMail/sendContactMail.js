@@ -22,14 +22,14 @@ const handler = async (event) => {
         const message   = params.message || 'badMessageFormat'
         const Mailgun   = require('mailgun.js')
         const formData  = require('form-data')
-        const domain    = 'sandbox36ca7adf1ccb45f887ccd7b9a501e89c.mailgun.org'
+        const domain    = process.env.NETLIFY_EMAILS_MAILGUN_DOMAIN
         const fromEmail = 'Cedemi Contact <inquiry@cedemi.fr>'
         const toEmails  = ['inquiry@cedemi.fr']
         const mailgun   = new Mailgun(formData)
 
         const mg = mailgun.client({
             username: 'api',
-            key: process.env.EMAILS_PROVIDER_API_KEY || '',
+            key: process.env.NETLIFY_EMAILS_PROVIDER_API_KEY || '',
             public_key: process.env.EMAILS_PROVIDER_PUB_KEY,
             timeout: 60000
         });
