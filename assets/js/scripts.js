@@ -52,6 +52,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
     // contact form submission
     const lang         = document.URL.includes('fr_en') ? 'en' : 'fr';
+    const tagRegex     = /(<([^>]+)>)/ig
     const submitButton = document.getElementById('submitButton');
     const form         = document.querySelector('form');
     const reason       = document.getElementById('reason');
@@ -59,6 +60,7 @@ window.addEventListener('DOMContentLoaded', event => {
     const email        = document.getElementById('email');
     const phone        = document.getElementById('phone');
     const message      = document.getElementById('message');
+    const complement   = document.getElementById('complement');
     const emailRegex   = new RegExp(/^\b[a-zA-Z0-9._%+-]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'm');
     let arrayMsgs      = [];
     let error          = true;
@@ -126,11 +128,21 @@ window.addEventListener('DOMContentLoaded', event => {
             document.getElementById('messageError').style.cssText = 'display : block; visibility : visible;';
             msg = '';
         } else {
-            //console.log('message OK');
             message.setCustomValidity('');
             error = false;
             document.getElementById('messageError').style.cssText = 'display : none; visibility : hidden;';
         }
+
+        if('' !== complement.value) {
+            error = true;
+            event.preventDefault();
+        }
+        var nameClear        = name.value;
+        const strippedName   = nameClear.toString().replace(tagRegex, '');
+        var reasonClear      = reason.value;
+        const strippedReason = reasonClear.toString().replace(tagRegex, '');
+        var msgClear         = message.value;
+        const strippedMsg    = msgClear.toString().replace(tagRegex, '');
 
         if( !error && 0 === arrayMsgs.length) {
             fetch(functionLocation, {
@@ -142,16 +154,15 @@ window.addEventListener('DOMContentLoaded', event => {
                 },
                 body: JSON.stringify(
                     {
-                        'name':name.value,
-                        'reason':reason.value,
+                        'name':strippedName,
+                        'reason':strippedReason,
                         'phone':phone.value,
                         'email':email.value,
-                        'message':message.value
+                        'message':strippedMsg
                     }
                 )
             })
             .then(res => {
-                //console.log("Request complete! response:", res);
                 if('OK' === res.statusText){
                     document.getElementById('form-wrapper').className = 'd-none';
                     submitButton.style.cssText = 'display : none; visibility : hidden;';

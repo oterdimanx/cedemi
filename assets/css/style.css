@@ -11774,6 +11774,9 @@ section#contact form#contactForm .form-control:focus {
   border-color: #ffc800;
   box-shadow: none;
 }
+section#contact form#contactForm .complement {
+  display: none;
+}
 section#contact form#contactForm ::-webkit-input-placeholder {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;

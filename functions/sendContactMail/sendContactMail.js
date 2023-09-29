@@ -14,7 +14,20 @@ const handler = async (event) => {
             };
         }
 
-        const params    = JSON.parse(event.body)
+        const params = JSON.parse(event.body)
+
+        if (params.complement) {
+            return {
+                statusCode: 500,
+                headers: {
+                    'Access-Control-Allow-Headers': 'Content-Type',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'OPTIONS,POST'
+                },
+                body: JSON.stringify("Unrecoverable Error"),
+            };
+        }
+
         const name      = params.name || 'badNameFormat'
         const reason    = params.reason || 'badReasonFormat'
         const email     = params.email || 'badEmailFormat'
