@@ -2,7 +2,6 @@
 
 const handler = async (event) => {
     try {
-
         if (event.body === null) {
             return {
                 statusCode: 400,
@@ -15,21 +14,37 @@ const handler = async (event) => {
             };
         }
 
-        const params = JSON.parse(event.body)
-        const name = params.name || 'badNameFormat'
-        const reason = params.reason || 'badReasonFormat'
-        const email = params.email || 'badEmailFormat'
-        const phone = params.phone || 'badPhoneFormat'
-        const message = params.message || 'badMessageFormat'
-        const sgMail = require('@sendgrid/mail')
-        const apiKey = process.env.NETLIFY_EMAILS_PROVIDER_API_KEY;
+        const params    = JSON.parse(event.body)
+        const name      = params.name || 'badNameFormat'
+        const reason    = params.reason || 'badReasonFormat'
+        const email     = params.email || 'badEmailFormat'
+        const phone     = params.phone || 'badPhoneFormat'
+        const message   = params.message || 'badMessageFormat'
+        const Mailgun   = require('mailgun.js')
+        const formData  = require('form-data')
+        const domain    = 'sandbox36ca7adf1ccb45f887ccd7b9a501e89c.mailgun.org'
+        const fromEmail = 'Cedemi Contact <inquiry@cedemi.fr>'
+        const toEmails  = ['inquiry@cedemi.fr']
+        const mailgun   = new Mailgun(formData)
 
-        sgMail.setApiKey(apiKey)
-        const msg = {
-            to: 'inquiry@cedemi.fr', // Change to your recipient
-            from: 'inquiry@cedemi.fr', // Change to your verified sender
+        const mg = mailgun.client({
+            username: 'api',
+            key: process.env.EMAILS_PROVIDER_API_KEY || '',
+            public_key: process.env.EMAILS_PROVIDER_PUB_KEY,
+            timeout: 60000
+        });
+
+        const sendResult = await mg.messages.create(domain, {
+            from: fromEmail,
+            to: toEmails,
             subject: 'Formulaire de Contact',
-            text: 'cedemi.fr',
+            text: 'cedemi.fr :' +
+                  'Nom : ' + name + ' | ' +
+                  'Raison Sociale : ' + reason + ' | ' +
+                  'Tel : ' + phone + ' | ' +
+                  'Email : ' + email + ' | ' +
+                  'Message : ' + message + ' | ' +
+                  'Message en provenance du formulaire de contact cedemi.fr',
             html: '<html>' +
                 '<head>' +
                 '</head>' +
@@ -42,15 +57,8 @@ const handler = async (event) => {
                 '<strong><i>Message en provenance du formulaire de contact cedemi.fr</i></strong>' +
                 '</body>' +
                 '</html>',
-        }
-        await sgMail
-            .send(msg)
-            .then(() => {
-                console.log('Email sent')
-            })
-            .catch((error) => {
-                console.error(error)
-            })
+        });
+
         return {
             statusCode: 200,
             headers: {
@@ -58,7 +66,7 @@ const handler = async (event) => {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'OPTIONS,POST'
             },
-            body: JSON.stringify({message: `ok`}),
+            body: JSON.stringify({message: sendResult.message}),
             // // more keys you can return:
             // headers: { "headerName": "headerValue", ... },
             // isBase64Encoded: true,
@@ -71,7 +79,7 @@ const handler = async (event) => {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'OPTIONS,POST'
         },
-        body: error.toString()
+        body: error
         }
     }
 };
