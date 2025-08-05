@@ -101,7 +101,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           session_id: sessionId,
-          website_id: 'f9e482e9-e1aa-4c84-a7ef-a25b24a4fc10',
+          website_id: 'd0d1e33c-e252-4bcb-b9dd-d120dea2a308',
           url: window.location.href,
           screen_resolution: window.screen.width + 'x' + window.screen.height,
           client_timestamp: new Date().toISOString(),
@@ -191,7 +191,7 @@
       eventsToSend.forEach(function(eventData) {
         var payload = JSON.stringify({
           session_id: sessionId,
-          website_id: 'f9e482e9-e1aa-4c84-a7ef-a25b24a4fc10',
+          website_id: 'd0d1e33c-e252-4bcb-b9dd-d120dea2a308',
           url: window.location.href,
           screen_resolution: window.screen.width + 'x' + window.screen.height,
           client_timestamp: new Date().toISOString(),
